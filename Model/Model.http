@@ -1,6 +1,10 @@
-@Model_HostAddress = http://localhost:5251
+@Model_HostAddress = http://localhost:5127
 
 GET {{Model_HostAddress}}/weatherforecast/
 Accept: application/json
+
+###
+
+GET {{Model_HostAddress}}/system/api/restaurant/list
 
 ###

@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Model.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseAuthorization();
+
+var root = Path.Combine(app.Environment.ContentRootPath, "upload");
+Directory.CreateDirectory(root);
+app.UseStaticFiles(new StaticFileOptions {
+    FileProvider = new PhysicalFileProvider(root),
+    RequestPath = "/upload" });
 
 app.MapControllers();
 
